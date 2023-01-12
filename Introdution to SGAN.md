@@ -10,7 +10,8 @@ S: steganalyser, determines if an image contains a concealed secret message
 
 denote $S(x)$ as the probability that $x$ has some hidden information 
 
-$L = \alpha(E_{x\sim p_{data}(x)}[\log D(x)]+E_{z\sim p_{noise}(z)}[\log (1-D(G(z)))])+\\ \quad (1-\alpha)E_{z\sim p_{noise}}[\log S(Stego(G(z))) + \log(1-S(G(z)))] \longrightarrow \displaystyle{\min_G \max_D \max_S}$
+$L = \alpha(E_{x\sim p_{data}(x)}[\log D(x)]+E_{z\sim p_{noise}(z)}[\log (1-D(G(z)))])+$  
+$\quad (1-\alpha)E_{z\sim p_{noise}}[\log S(Stego(G(z))) + \log(1-S(G(z)))] \longrightarrow \displaystyle{\min_G \max_D \max_S}$
 
 
 
