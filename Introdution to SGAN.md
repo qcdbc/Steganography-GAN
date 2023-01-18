@@ -30,3 +30,14 @@ G structure: FCL(8192) --> four $C2D-BN-LR$ with Fractional-Strided Convolution 
 using a independent steganalyser $S^*$, define a filter $F^{(0)}$ 
 
 ​		$S^*$ structure: 2D convolution with $F^{(0)}$ filter --> Conv2D --> Conv2D --> Max Pooling --> Conv2D --> Conv2D --> Max Pooling --> FCL(1024) --> FCL(1) --> Sigmoid 
+
+$200,000$ data from Dataset Celebrities (Ziwei Liu & Tang)  
+$190,000$ pics for training and $10,000$ for testing  
+and we embedding some information in both train and test dataset  
+*in total*  
+there is $380,000$ for train and $20,000$ for test
+
+as for embeding algorithm, we use $\pm 1$ embedding algorithm, also known as LSB matching algriothm  
+with payload size equal to $.4$ bits per pixel for one out of three channels  
+
+
