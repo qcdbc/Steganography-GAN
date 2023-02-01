@@ -23,33 +23,6 @@ class BaseStego:
 class LSBMatching(BaseStego):
     def __init__(self):
         super(LSBMatching, self).__init__()
-       
-    @staticmethod
-    def torch_encode(container):
-        """
-        LSB matching algorithm (+-1 embedding)
-        :param container: tf tensor shape (batch_size, width, height, chan)
-        :param information: array with int bits
-        :param stego: name of image with hidden message
-        """
-        n, chan, width, height = tuple(map(int, container.shape))
-        
-        info = np.random.randint(0, 2, (n, 2002))
-        mask = np.zeros(list(container.size()))
-            
-        print("Num of images: %s" % n)
-            
-        for img_idx in range(n):
-            for i, bit in enumerate(info[img_idx]):
-                ind, jnd = i // width, i - width * (i // width)
-                    
-                if torch.IntTensor((container[img_idx, 0, ind, jnd] + 1) * 127.5) % 2 != bit:
-                    if np.random.randint(0, 2) == 0:
-                        mask[img_idx, 0, ind, jnd] += 1/ 256
-                    else:
-                        mask[img_idx, 0, ind, jnd] -= 1/ 256
-
-        return tf.add(container, mask)
 
     @staticmethod
     def pt_encode(container):
