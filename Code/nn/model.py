@@ -93,11 +93,3 @@ class Generator(nn.Module):
         """
         out = self.conv(inputs)
         return out
-
-
-# test
-# if __name__ == '__main__':
-#     noise = torch.randn(64, 100)
-#     g = Generator()
-#     out = g(noise)
-#     print(out.shape)
