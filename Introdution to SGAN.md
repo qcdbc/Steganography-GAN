@@ -4,7 +4,7 @@ D: classifies whether image is real or synthetic
 
 S: steganalyser, determines if an image contains a concealed secret message
 
-​		G compete against D and S simultaneously
+G compete against D and S simultaneously
 
 
 
@@ -29,7 +29,7 @@ G structure: FCL(8192) --> four $C2D-BN-LR$ with Fractional-Strided Convolution 
 
 using a independent steganalyser $S^*$, define a filter $F^{(0)}$ 
 
-​		$S^*$ structure: 2D convolution with $F^{(0)}$ filter --> Conv2D --> Conv2D --> Max Pooling --> Conv2D --> Conv2D --> Max Pooling --> FCL(1024) --> FCL(1) --> Sigmoid 
+$S^*$ structure: 2D convolution with $F^{(0)}$ filter --> Conv2D --> Conv2D --> Max Pooling --> Conv2D --> Conv2D --> Max Pooling --> FCL(1024) --> FCL(1) --> Sigmoid 
 
 $200,000$ data from Dataset Celebrities (Ziwei Liu & Tang)  
 $190,000$ pics for training and $10,000$ for testing  
@@ -41,3 +41,19 @@ as for embeding algorithm, we use $\pm 1$ embedding algorithm, also known as LSB
 with payload size equal to $.4$ bits per pixel for one out of three channels  
 
 
+
+#### Our approach  
+
+my approach to SGAN is using iWGAN(improved Wasserstein GAN) instead of DCGAN to optimize net, hence, some losses are re-defined as follows:  
+
+##### loss_G: 
+
+$-\alpha(E_{z\sim p_{noise}(z)}D(G(x))) - (1-\alpha)(E_{z\sim p_{noise}(z)}(S(Stego(G(z))))$  
+
+##### loss_D:  
+
+$-E_{x\sim p_{data}(x)}D(x) + E_{z\sim p_{noise}(z)}D(G(z))$   
+
+##### loss_S:  
+
+$-E_{z\sim p_{noise}(z)}S(Stego(G(z))) + E_{z\sim p_{noise}(z)}S(G(z))$  
